@@ -1,0 +1,27 @@
+{
+  "storeName": "Zains Mart",
+  "logo": "/images/logo.png",
+  "theme": {
+    "primary": "#7f1d1d",
+    "secondary": "#f4f4f4",
+    "accent": "#fbbf24",
+    "font": "Inter, sans-serif"
+  },
+  "footer": {
+    "text": "© 2026 Zains Mart. All rights reserved.",
+    "links": [
+      { "name": "Privacy Policy", "url": "/privacy" },
+      { "name": "Terms & Conditions", "url": "/terms" }
+    ]
+  },
+  "contact": {
+    "phone": "8801830062242",
+    "email": "info@zainsmart.com",
+    "address": "Dhaka, Bangladesh"
+  },
+  "social": {
+    "facebook": "https://facebook.com/zainsmart",
+    "instagram": "https://instagram.com/zainsmart",
+    "twitter": "https://twitter.com/zainsmart"
+  }
+}

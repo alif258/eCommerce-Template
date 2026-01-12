@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "Red T-Shirt",
+    "description": "Comfortable cotton red t-shirt",
+    "price": 500,
+    "image": "/images/red-tshirt.jpg",
+    "category": "Clothing"
+  },
+  {
+    "id": 2,
+    "name": "Blue Jeans",
+    "description": "Slim fit blue jeans",
+    "price": 1200,
+    "image": "/images/blue-jeans.jpg",
+    "category": "Clothing"
+  },
+  {
+    "id": 3,
+    "name": "Sneakers",
+    "description": "Stylish white sneakers",
+    "price": 2500,
+    "image": "/images/sneakers.jpg",
+    "category": "Shoes"
+  },
+  {
+    "id": 4,
+    "name": "Watch",
+    "description": "Classic wrist watch",
+    "price": 3500,
+    "image": "/images/watch.jpg",
+    "category": "Accessories"
+  },
+  {
+    "id": 5,
+    "name": "Sunglasses",
+    "description": "UV Protection Sunglasses",
+    "price": 800,
+    "image": "/images/sunglasses.jpg",
+    "category": "Accessories"
+  },
+  {
+    "id": 6,
+    "name": "Green T-Shirt",
+    "description": "Soft cotton green t-shirt",
+    "price": 550,
+    "image": "/images/green-tshirt.jpg",
+    "category": "Clothing"
+  },
+  {
+    "id": 7,
+    "name": "Black Jeans",
+    "description": "Regular fit black jeans",
+    "price": 1300,
+    "image": "/images/black-jeans.jpg",
+    "category": "Clothing"
+  },
+  {
+    "id": 8,
+    "name": "Running Shoes",
+    "description": "Lightweight running shoes",
+    "price": 2200,
+    "image": "/images/running-shoes.jpg",
+    "category": "Shoes"
+  },
+  {
+    "id": 9,
+    "name": "Leather Belt",
+    "description": "Genuine leather belt",
+    "price": 900,
+    "image": "/images/leather-belt.jpg",
+    "category": "Accessories"
+  },
+  {
+    "id": 10,
+    "name": "Cap",
+    "description": "Stylish baseball cap",
+    "price": 400,
+    "image": "/images/cap.jpg",
+    "category": "Accessories"
+  }
+]

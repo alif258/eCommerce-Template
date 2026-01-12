@@ -1,0 +1,5 @@
+[
+  { "id": 2, "name": "Clothing", "image": "/images/category-clothing.jpg" },
+  { "id": 3, "name": "Shoes", "image": "/images/category-shoes.jpg" },
+  { "id": 4, "name": "Accessories", "image": "/images/category-accessories.jpg" }
+]
