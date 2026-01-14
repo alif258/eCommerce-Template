@@ -4,16 +4,12 @@ import { toggleCart, removeFromCart, updateQty } from "../redux/slices/cartSlice
 import { useNavigate } from "react-router-dom";
 
 const CartSidebar = () => {
-  // Redux থেকে ডেটা নেওয়ার সময় অপশনাল চেইনিং ব্যবহার করা নিরাপদ
-  const cartState = useSelector((state) => state.cart);
-  const items = cartState?.items || [];
-  const isOpen = cartState?.isOpen || false;
-  
+  const { items, isOpen } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // সাবটোটাল ক্যালকুলেশন (৳)
-  const subtotal = items.reduce((sum, item) => sum + (item.price * item.qty), 0);
+  // মোট হিসাব
+  const subtotal = items.reduce((sum, item) => sum + item.price * item.qty, 0);
 
   const handleNavigation = (path) => {
     dispatch(toggleCart());
@@ -22,7 +18,7 @@ const CartSidebar = () => {
 
   return (
     <>
-      {/* Backdrop (কালো আবছা অংশ) */}
+      {/* Backdrop */}
       {isOpen && (
         <div 
           className="fixed inset-0 bg-black/60 z-[100] transition-opacity duration-300 backdrop-blur-sm" 
@@ -35,39 +31,36 @@ const CartSidebar = () => {
         
         <div className="flex flex-col h-full font-inter">
           
-          {/* Header - Primary Color (#7f1d1d) */}
+          {/* Header */}
           <div className="p-5 border-b flex justify-between items-center bg-primary text-white sticky top-0">
             <div>
               <h2 className="text-xl font-bold tracking-tight">Shopping Cart</h2>
-              <p className="text-xs text-white/80 font-medium">{items.length} items selected</p>
+              <p className="text-xs text-white/80">{items.length} items to checkout</p>
             </div>
-            <button 
-              onClick={() => dispatch(toggleCart())} 
-              className="p-2 hover:bg-white/10 rounded-full transition-all active:scale-90 cursor-pointer"
-            >
+            <button onClick={() => dispatch(toggleCart())} className="p-2 hover:bg-white/10 rounded-full transition-all active:scale-90">
                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                </svg>
             </button>
           </div>
 
-          {/* Item List (Scrollable Area) */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-secondary">
+          {/* Item List */}
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-secondary/30">
             {items.length === 0 ? (
-              <div className="flex flex-col items-center justify-center h-full text-gray-400 py-20">
+              <div className="flex flex-col items-center justify-center h-full text-gray-400">
                 <p className="text-lg font-medium">Your cart is empty</p>
               </div>
             ) : (
               items.map((item) => (
                 <div key={item.id} className="flex gap-4 bg-white p-4 rounded-2xl border border-gray-100 shadow-sm relative group overflow-hidden">
                   {/* Product Image */}
-                  <img src={item.image} alt={item.name} className="w-20 h-20 object-cover rounded-xl border border-gray-100" />
+                  <img src={item.image} alt={item.name} className="w-24 h-24 object-cover rounded-xl border border-secondary shadow-sm" />
                   
                   <div className="flex-1 flex flex-col justify-between">
                     <div>
                       <h4 className="font-bold text-gray-800 text-sm leading-tight mb-1">{item.name}</h4>
                       
-                      {/* Price Section - Original Price & Current Price */}
+                      {/* Price Section with Strike-through */}
                       <div className="flex items-center gap-2">
                         <span className="text-accent font-black text-lg">৳{item.price}</span>
                         {item.oldPrice && (
@@ -77,26 +70,26 @@ const CartSidebar = () => {
                     </div>
 
                     <div className="flex items-center justify-between mt-2">
-                      {/* Quantity Controls */}
-                      <div className="flex items-center border-2 border-gray-50 rounded-xl bg-gray-50 overflow-hidden">
+                      {/* Qty Control with Primary Color */}
+                      <div className="flex items-center border-2 border-secondary rounded-xl bg-secondary/50 overflow-hidden">
                         <button 
                           onClick={() => item.qty > 1 ? dispatch(updateQty({id: item.id, qty: item.qty - 1})) : dispatch(removeFromCart(item.id))} 
-                          className="px-3 py-1 hover:bg-primary hover:text-white transition-colors cursor-pointer font-bold"
+                          className="px-3 py-1.5 hover:bg-primary hover:text-white transition-colors duration-200"
                         >
                           {item.qty === 1 ? '✕' : '-'}
                         </button>
                         <span className="px-3 text-sm font-black text-primary">{item.qty}</span>
                         <button 
                           onClick={() => dispatch(updateQty({id: item.id, qty: item.qty + 1}))} 
-                          className="px-3 py-1 hover:bg-primary hover:text-white transition-colors cursor-pointer font-bold"
+                          className="px-3 py-1.5 hover:bg-primary hover:text-white transition-colors duration-200"
                         >
                           +
                         </button>
                       </div>
                       
-                      {/* Subtotal for this specific item */}
+                      {/* Item Subtotal Calculation */}
                       <div className="text-right">
-                        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">Subtotal</p>
+                        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">Line Total</p>
                         <p className="font-bold text-primary">৳{item.price * item.qty}</p>
                       </div>
                     </div>
@@ -106,47 +99,45 @@ const CartSidebar = () => {
             )}
           </div>
 
-          {/* Footer Section */}
+          {/* Footer / Summary */}
           {items.length > 0 && (
             <div className="p-6 border-t bg-white shadow-[0_-15px_30px_rgba(0,0,0,0.05)]">
               <div className="space-y-3 mb-6">
-                <div className="flex justify-between text-gray-500 font-medium text-sm">
-                  <span>Cart Subtotal</span>
-                  <span className="font-bold text-gray-800">৳ {subtotal}</span>
+                <div className="flex justify-between text-gray-500 font-medium">
+                  <span>Order Subtotal</span>
+                  <span>৳ {subtotal}</span>
                 </div>
-                <div className="flex justify-between text-gray-500 font-medium text-sm">
-                  <span>Shipping Cost</span>
-                  <span className="text-primary text-[10px] font-bold bg-red-50 px-2 py-0.5 rounded">Calculated later</span>
+                <div className="flex justify-between text-gray-500 font-medium">
+                  <span>Shipping & Tax</span>
+                  <span className="text-primary text-xs font-bold bg-primary/5 px-2 py-0.5 rounded">Calculate at next step</span>
                 </div>
-                
-                {/* Total Line - Dashed Divider */}
-                <div className="border-t-2 border-dashed border-gray-100 pt-4 flex justify-between items-center">
-                  <span className="font-black text-gray-800 text-base uppercase">Net Total</span>
+                <div className="border-t-2 border-dashed border-secondary pt-4 flex justify-between items-center">
+                  <span className="font-black text-gray-800 text-lg uppercase">Net Payable</span>
                   <span className="text-3xl font-black text-accent drop-shadow-sm">৳ {subtotal}</span>
                 </div>
               </div>
               
               <div className="grid grid-cols-2 gap-4">
-                {/* View Cart Button */}
                 <button 
                   onClick={() => handleNavigation("/cart")}
-                  className="w-full border-2 border-primary text-primary py-3.5 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-primary hover:text-white transition-all active:scale-95 cursor-pointer"
+                  className="w-full border-2 border-primary text-primary py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-all active:scale-95"
                 >
-                  View Full Cart
+                  View Cart
                 </button>
 
-                {/* Checkout Button - Accent Color (#fbbf24) */}
                 <button 
                   onClick={() => handleNavigation("/checkout")}
-                  className="w-full bg-accent text-primary py-3.5 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:brightness-105 shadow-md active:scale-95 transition-all cursor-pointer"
+                  className="w-full bg-accent text-primary py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:brightness-105 shadow-[0_4px_15px_-5px_#fbbf24] active:scale-95 transition-all"
                 >
-                  Checkout Now
+                  Checkout
                 </button>
               </div>
-              
-              <p className="mt-4 text-[9px] text-center text-gray-400 uppercase tracking-widest italic">
-                Secure transaction with 128-bit encryption
-              </p>
+              <div className="mt-4 flex justify-center gap-2 opacity-40 grayscale">
+                 {/* Payment Icons Placeholder */}
+                 <div className="h-4 w-8 bg-gray-400 rounded-sm"></div>
+                 <div className="h-4 w-8 bg-gray-400 rounded-sm"></div>
+                 <div className="h-4 w-8 bg-gray-400 rounded-sm"></div>
+              </div>
             </div>
           )}
         </div>

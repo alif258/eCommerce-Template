@@ -4,6 +4,8 @@
     "name": "Red T-Shirt",
     "description": "Comfortable cotton red t-shirt",
     "price": 500,
+    "offer": 5,
+    "stock": 10,
     "image": "/images/red-tshirt.jpg",
     "category": "Clothing"
   },
@@ -12,6 +14,8 @@
     "name": "Blue Jeans",
     "description": "Slim fit blue jeans",
     "price": 1200,
+    "offer": 15,
+    "stock": 8,
     "image": "/images/blue-jeans.jpg",
     "category": "Clothing"
   },
@@ -20,6 +24,8 @@
     "name": "Sneakers",
     "description": "Stylish white sneakers",
     "price": 2500,
+    "offer": 20,
+    "stock": 5,
     "image": "/images/sneakers.jpg",
     "category": "Shoes"
   },
@@ -28,6 +34,8 @@
     "name": "Watch",
     "description": "Classic wrist watch",
     "price": 3500,
+    "offer": 10,
+    "stock": 6,
     "image": "/images/watch.jpg",
     "category": "Accessories"
   },
@@ -36,6 +44,8 @@
     "name": "Sunglasses",
     "description": "UV Protection Sunglasses",
     "price": 800,
+    "offer": 5,
+    "stock": 15,
     "image": "/images/sunglasses.jpg",
     "category": "Accessories"
   },
@@ -44,6 +54,8 @@
     "name": "Green T-Shirt",
     "description": "Soft cotton green t-shirt",
     "price": 550,
+    "offer": 12,
+    "stock": 10,
     "image": "/images/green-tshirt.jpg",
     "category": "Clothing"
   },
@@ -52,6 +64,8 @@
     "name": "Black Jeans",
     "description": "Regular fit black jeans",
     "price": 1300,
+    "offer": 18,
+    "stock": 7,
     "image": "/images/black-jeans.jpg",
     "category": "Clothing"
   },
@@ -60,6 +74,8 @@
     "name": "Running Shoes",
     "description": "Lightweight running shoes",
     "price": 2200,
+    "offer": 25,
+    "stock": 4,
     "image": "/images/running-shoes.jpg",
     "category": "Shoes"
   },
@@ -68,6 +84,8 @@
     "name": "Leather Belt",
     "description": "Genuine leather belt",
     "price": 900,
+    "offer": 8,
+    "stock": 9,
     "image": "/images/leather-belt.jpg",
     "category": "Accessories"
   },
@@ -76,6 +94,8 @@
     "name": "Cap",
     "description": "Stylish baseball cap",
     "price": 400,
+    "offer": 5,
+    "stock": 0,
     "image": "/images/cap.jpg",
     "category": "Accessories"
   }
